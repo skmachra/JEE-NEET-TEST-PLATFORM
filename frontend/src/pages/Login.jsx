@@ -57,7 +57,7 @@ const Login = () => {
     const handleGoogleSuccess = async (credentialResponse) => {
         try {
             const response = await axios.post(
-                "/api/v1/users/google-auth",
+                "https://jee-neet-test-platform-backend.vercel.app/api/v1/users/google-auth",
                 { credential: credentialResponse.credential },
                 { withCredentials: true }
             );
