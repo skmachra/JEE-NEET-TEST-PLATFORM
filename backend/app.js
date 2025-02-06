@@ -23,3 +23,6 @@ app.use("/api/v1/admin", adminRouter)
 app.use("/api/v1/tests", testRouter)
 
 app.use("/api/v1/users", userRouter)
+app.use("/" , (req, res) => {
+    res.send("Welcome to the backend")
+})
