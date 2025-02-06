@@ -35,7 +35,7 @@ const Login = () => {
         try {
             // Make POST request to the backend login API
             const response = await axios.post(
-                "/api/v1/users/login", // Replace with your actual backend URL
+                "https://jee-neet-test-platform-backend.vercel.app/api/v1/users/login", // Replace with your actual backend URL
                 formData,
                 { withCredentials: true } // Ensures cookies are sent
             );
