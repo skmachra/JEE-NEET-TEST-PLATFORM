@@ -3,17 +3,10 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 const app = express()
-var whitelist = ['http://localhost:5173', process.env.CORS_ORIGION]
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-app.use(cors(corsOptions, {credentials: true}))
+app.use(cors({
+    origin: process.env.CORS_ORIGION,
+    credentials: true,
+}))
 
 // app.use(express.static('public'))
 app.use(express.json())
