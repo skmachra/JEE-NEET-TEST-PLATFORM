@@ -69,7 +69,7 @@ const TestTakingPage = () => {
 
       setQuestionTimes((prev) => ({
         ...prev,
-        [currentQuestion.id]: (prev[currentQuestion.id] || 0) + timeSpent,
+        [currentQuestion?.id]: (prev[currentQuestion?.id] || 0) + timeSpent,
       }));
     }
 
@@ -162,13 +162,13 @@ const TestTakingPage = () => {
 
   const toggleBookmark = async (questionId, ctag = "") => {
     const isBookmarked = bookmarkedQuestions.some(
-      (bookmark) => bookmark.question._id.toString() === questionId
+      (bookmark) => bookmark?.question?._id?.toString() === questionId
     );
 
     if (isBookmarked) {
       // Remove bookmark
       setBookmarkedQuestions((prevBookmarks) =>
-        prevBookmarks.filter((bookmark) => bookmark.question._id.toString() !== questionId)
+        prevBookmarks.filter((bookmark) => bookmark?.question?._id?.toString() !== questionId)
       );
       await handleRemoveBookmark(questionId);
     } else {
@@ -194,7 +194,7 @@ const TestTakingPage = () => {
         }
       );
       setShowPopup(false); // Close the popup
-      alert(response.data?.message || "Added");
+      showMessage("success", "Bookmark added"); // Show success message
     } catch (error) {
       showMessage(error.response?.data?.message || "Error adding bookmark", "error");
     }
@@ -209,7 +209,7 @@ const TestTakingPage = () => {
           withCredentials: true
         }
       );
-      alert(response.data.message); // Show success message
+      showMessage("success", "Bookmark removed"); // Show success message
       // Remove bookmark from stat
     } catch (error) {
       alert(error.response?.data?.message || "Failed to remove bookmark");
@@ -319,7 +319,6 @@ const TestTakingPage = () => {
       </div>
     );
   }
-
   
   return (
     <>
@@ -530,7 +529,7 @@ const TestTakingPage = () => {
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg w-80">
-            {!bookmarkedQuestions.some((bookmark) => bookmark?.question?._id.toString() === currentQuestion.id) ? (
+            {!bookmarkedQuestions.some((bookmark) => bookmark?.question?._id?.toString() === currentQuestion.id) ? (
               <>
                 <h2 className="text-lg font-bold mb-4">Add a Tag</h2>
                 <input

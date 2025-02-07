@@ -36,20 +36,20 @@ const BookmarkPage = () => {
   // Handle removing a bookmark
   const removeBookmark = async (questionId) => {
     try {
-      await axios.post(
-        import.meta.env.VITE_API_URL+"/api/users/bookmarks/remove",
+      const response = await axios.post(
+        import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks/remove",
         { questionId },
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          withCredentials: true,
         }
       );
 
-      // Update the UI by filtering out the removed bookmark
+      showMessage("success", response.data.message,);
       setBookmarks((prevBookmarks) =>
-        prevBookmarks.filter((bookmark) => bookmark?.question._id !== questionId)
+        prevBookmarks.filter((bookmark) => bookmark?.question?._id !== questionId)
       );
       setFilteredBookmarks((prevBookmarks) =>
-        prevBookmarks.filter((bookmark) => bookmark?.question._id !== questionId)
+        prevBookmarks.filter((bookmark) => bookmark?.question?._id !== questionId)
       );
     } catch (error) {
       showMessage(error.response?.data?.message || "Failed to remove bookmark", "error");

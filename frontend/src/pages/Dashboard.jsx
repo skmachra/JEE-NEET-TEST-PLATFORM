@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useAuth } from "../components/Auth";
 const Dashboard = () => {
     const {isLoggedIn, user} = useAuth();
     if (!isLoggedIn) {
