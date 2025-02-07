@@ -3,10 +3,21 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 const app = express()
-app.use(cors({
-    origin: process.env.CORS_ORIGION,
+const allowedOrigins = process.env.CORS_ORIGIN.split(",");
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
-}))
+  })
+);
+
 
 // app.use(express.static('public'))
 app.use(express.json())
