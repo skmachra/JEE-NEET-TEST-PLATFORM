@@ -193,11 +193,10 @@ const TestTakingPage = () => {
           withCredentials: true
         }
       );
-
       setShowPopup(false); // Close the popup
       alert(response.data?.message || "Added");
     } catch (error) {
-      // setMessage(error.response?.data?.message || "Error adding bookmark");
+      showMessage(error.response?.data?.message || "Error adding bookmark", "error");
     }
   };
 
