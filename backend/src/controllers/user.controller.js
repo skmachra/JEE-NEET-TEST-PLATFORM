@@ -81,7 +81,9 @@ const googleAuth = asynchandler(async (req, res) => {
     );
     const options = {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
+      domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // undefined for localhost
     };
     // Set cookies
     return res
@@ -137,7 +139,9 @@ const loginUser = asynchandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
+    domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // undefined for localhost
   };
 
   return res
@@ -167,7 +171,9 @@ const logoutUser = asynchandler(async (req, res) => {
   },);
   const options = {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
+    domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // undefined for localhost
   };
   return res
     .status(200)
@@ -196,7 +202,9 @@ const refreshAccessToken = asynchandler(async (req, res) => {
 
     const options = {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
+      domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // undefined for localhost
     };
     const { accessToken, refreshToken } = await generateAccessAndRefereshToken(
       user._id
