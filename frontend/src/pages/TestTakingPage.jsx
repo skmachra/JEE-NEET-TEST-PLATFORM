@@ -531,7 +531,7 @@ const TestTakingPage = () => {
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg w-80">
-            {!bookmarkedQuestions.some((bookmark) => bookmark.question._id.toString() === currentQuestion.id) ? (
+            {!bookmarkedQuestions.some((bookmark) => bookmark?.question?._id.toString() === currentQuestion.id) ? (
               <>
                 <h2 className="text-lg font-bold mb-4">Add a Tag</h2>
                 <input
