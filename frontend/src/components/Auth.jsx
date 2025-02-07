@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkLoginStatus = async () => {
     try {
-      const response = await axios.get("/api/v1/users/current-user", {
+      const response = await axios.get(import.meta.env.VITE_API_URL+"/api/v1/users/current-user", {
         withCredentials: true,
       });
       return response.data.data;

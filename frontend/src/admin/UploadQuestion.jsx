@@ -71,7 +71,7 @@ const QuestionUploadForm = () => {
     }
   
     try {
-      const response = await axios.post("/api/v1/admin/question", formData, {
+      const response = await axios.post(import.meta.env.VITE_API_URL+"/api/v1/admin/question", formData, {
         withCredentials: true, // Ensures cookies are sent for authentication
       });
       console.log(response.data);

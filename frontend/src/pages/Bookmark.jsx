@@ -14,7 +14,7 @@ const BookmarkPage = () => {
   useEffect(() => {
     const fetchBookmarks = async () => {
       try {
-        const response = await axios.get("/api/v1/users/bookmarks", {
+        const response = await axios.get(import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks", {
           withCredentials: true,
         });
 
@@ -37,7 +37,7 @@ const BookmarkPage = () => {
   const removeBookmark = async (questionId) => {
     try {
       await axios.post(
-        "/api/users/bookmarks/remove",
+        import.meta.env.VITE_API_URL+"/api/users/bookmarks/remove",
         { questionId },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

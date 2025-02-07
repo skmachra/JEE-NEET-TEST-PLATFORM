@@ -13,7 +13,7 @@ const Header = () => {
   };
   const logoutcall = async () => {
     try {
-      const response = await axios.post("/api/v1/users/logout", {}, {
+      const response = await axios.post(import.meta.env.VITE_API_URL+"/api/v1/users/logout", {}, {
         withCredentials: true, // Ensures cookies are sent
       });
       console.log(response.data.message); // "User logged out successfully"

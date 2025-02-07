@@ -14,7 +14,7 @@ const Question = () => {
 
     useEffect(() => {
         (async () => {
-            const response = await axios.get("/api/v1/admin/questions", {
+            const response = await axios.get(import.meta.env.VITE_API_URL+"/api/v1/admin/questions", {
                 withCredentials: true, // Ensure cookies are sent for authentication
             });
             console.log(response.data);
@@ -38,7 +38,7 @@ const Question = () => {
     const handleDeleteQuestion = async () => {
         
         try {
-            await axios.delete(`/api/v1/admin/question/${questionToDelete}`, {
+            await axios.delete(import.meta.env.VITE_API_URL+`/api/v1/admin/question/${questionToDelete}`, {
                 withCredentials: true, // Ensure cookies are sent for authentication
             });
             setShowDeletePopup(false);

@@ -33,7 +33,7 @@ const TestHistory = () => {
   const getTestDetails = async (testId) => {
     try {
       const response = await axios.get(
-        `/api/v1/tests/${testId}`,
+        import.meta.env.VITE_API_URL+`/api/v1/tests/${testId}`,
         {
           withCredentials: true, // Ensures cookies are sent for authentication
         }
@@ -62,7 +62,7 @@ const TestHistory = () => {
     const fetchTestHistory = async () => {
       try {
         const response = await axios.get(
-          `/api/v1/tests/history/${id}`,
+          import.meta.env.VITE_API_URL+`/api/v1/tests/history/${id}`,
           {
             withCredentials: true, // Ensures cookies are sent for authentication
           }
@@ -78,7 +78,7 @@ const TestHistory = () => {
     fetchTestHistory();
     const fetchBookmarks = async () => {
       try {
-        const response = await axios.get("/api/v1/users/bookmarks", {
+        const response = await axios.get(import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks", {
           withCredentials: true
         });
         console.log(response);
@@ -154,7 +154,7 @@ const TestHistory = () => {
   const handleAddBookmark = async (questionId, tag) => {
     try {
       const response = await axios.post(
-        "/api/v1/users/bookmarks/add", // Replace with your actual API endpoint
+        import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks/add", // Replace with your actual API endpoint
         {
           questionId,
           tag,
@@ -174,7 +174,7 @@ const TestHistory = () => {
   const handleRemoveBookmark = async (questionId) => {
     try {
       const response = await axios.post(
-        "/api/v1/users/bookmarks/remove", // Replace with your actual endpoint
+        import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks/remove", // Replace with your actual endpoint
         { questionId },
         {
           withCredentials: true

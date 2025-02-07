@@ -25,7 +25,7 @@ const ManageTestPage = () => {
   // Fetch questions from the API
   useEffect(() => {
     axios
-      .get("/api/v1/admin/questions") // Replace with your questions API endpoint
+      .get(import.meta.env.VITE_API_URL+"/api/v1/admin/questions") // Replace with your questions API endpoint
       .then((response) => {
         console.log(response.data);
         setQuestions(response.data);
@@ -35,7 +35,7 @@ const ManageTestPage = () => {
 
   useEffect(() => {
     axios
-      .get(`/api/v1/tests/${id}`) // Replace with your tests API endpoint
+      .get(import.meta.env.VITE_API_URL+`/api/v1/tests/${id}`) // Replace with your tests API endpoint
       .then((response) => {
         console.log(response.data);
         setTestDetails({
@@ -113,7 +113,7 @@ const ManageTestPage = () => {
     };
 
     axios
-      .patch(`/api/v1/admin/manage-test/${id}`, testPayload, {
+      .patch(import.meta.env.VITE_API_URL+`/api/v1/admin/manage-test/${id}`, testPayload, {
         withCredentials: true
       }) // Replace with your test creation API endpoint
       .then((response) => {

@@ -26,7 +26,7 @@ const QuestionUpdateForm = () => {
   useEffect(() => {
     (async () =>{
       if (id) {
-        const response = await axios.get(`/api/v1/admin/question/${id}`);
+        const response = await axios.get(import.meta.env.VITE_API_URL+`/api/v1/admin/question/${id}`);
         console.log(response.data);
         setQuestion(response.data.question);
         setType(response.data.type);
@@ -100,7 +100,7 @@ const QuestionUpdateForm = () => {
     }
   
     try {
-      const response = await axios.patch(`/api/v1/admin/question/${id}`, formData, {
+      const response = await axios.patch(import.meta.env.VITE_API_URL+`/api/v1/admin/question/${id}`, formData, {
         withCredentials: true, // Ensures cookies are sent for authentication
       });
       console.log(response.data);

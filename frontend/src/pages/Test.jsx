@@ -15,11 +15,10 @@ const TestPage = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await axios.get('/api/v1/tests');
+                const response = await axios.get(import.meta.env.VITE_API_URL+'/api/v1/tests');
                 setTests(response.data);
             } catch (error) {
                 console.log(error);
-
             }
         })();
     }, []);

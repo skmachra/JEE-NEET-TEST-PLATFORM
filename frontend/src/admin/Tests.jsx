@@ -14,7 +14,7 @@ const Tests = () => {
 
     const fetchTests = async () => {
         try {
-            const response = await axios.get('/api/v1/tests');
+            const response = await axios.get(import.meta.env.VITE_API_URL+'/api/v1/tests');
             setTests(response.data);
         } catch (error) {
             console.error(error);
@@ -23,7 +23,7 @@ const Tests = () => {
 
     const handleDeleteTest = async () => {
         try {
-            await axios.delete(`/api/v1/admin/delete-test/${testToDelete}`, {
+            await axios.delete(import.meta.env.VITE_API_URL+`/api/v1/admin/delete-test/${testToDelete}`, {
                 withCredentials: true, // Ensures cookies are sent for authentication
             });
             setShowDeletePopup(false);

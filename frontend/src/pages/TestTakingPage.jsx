@@ -46,7 +46,7 @@ const TestTakingPage = () => {
   const getTestDetails = async (testId) => {
     try {
       const response = await axios.get(
-        `/api/v1/tests/${testId}`,
+        import.meta.env.VITE_API_URL+`/api/v1/tests/${testId}`,
         {
           withCredentials: true, // Ensures cookies are sent for authentication
         }
@@ -95,7 +95,7 @@ const TestTakingPage = () => {
     fetchTestDetails();
     const fetchBookmarks = async () => {
       try {
-        const response = await axios.get("/api/v1/users/bookmarks", {
+        const response = await axios.get(import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks", {
           withCredentials: true
         });
         console.log(response);
@@ -184,7 +184,7 @@ const TestTakingPage = () => {
   const handleAddBookmark = async (questionId, tag) => {
     try {
       const response = await axios.post(
-        "/api/v1/users/bookmarks/add", // Replace with your actual API endpoint
+        import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks/add", // Replace with your actual API endpoint
         {
           questionId,
           tag,
@@ -204,7 +204,7 @@ const TestTakingPage = () => {
   const handleRemoveBookmark = async (questionId) => {
     try {
       const response = await axios.post(
-        "/api/v1/users/bookmarks/remove", // Replace with your actual endpoint
+        import.meta.env.VITE_API_URL+"/api/v1/users/bookmarks/remove", // Replace with your actual endpoint
         { questionId },
         {
           withCredentials: true
@@ -228,7 +228,7 @@ const TestTakingPage = () => {
   const submitTest = async (testId, answers, questionTimes) => {
     try {
       const response = await axios.post(
-        `/api/v1/tests/${testId}/submit`,
+        import.meta.env.VITE_API_URL+`/api/v1/tests/${testId}/submit`,
         { answers, questionTimes },
         {
           withCredentials: true, // Ensures cookies (for authentication) are sent
@@ -321,7 +321,6 @@ const TestTakingPage = () => {
     );
   }
 
-  console.log(currentQuestion);
   
   return (
     <>
