@@ -141,7 +141,7 @@ const loginUser = asynchandler(async (req, res) => {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "None",
-    domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // undefined for localhost
+    // domain: process.env.NODE_ENV === "production" ? ".vercel.app" : undefined, // undefined for localhost
   };
 
   return res
