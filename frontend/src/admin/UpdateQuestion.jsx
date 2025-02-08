@@ -26,7 +26,9 @@ const QuestionUpdateForm = () => {
   useEffect(() => {
     (async () =>{
       if (id) {
-        const response = await axios.get(import.meta.env.VITE_API_URL+`/api/v1/admin/question/${id}`);
+        const response = await axios.get(import.meta.env.VITE_API_URL+`/api/v1/admin/question/${id}`, {
+          withCredentials: true,
+        });
         console.log(response.data);
         setQuestion(response.data.question);
         setType(response.data.type);
