@@ -85,6 +85,9 @@ const TestPage = () => {
                         <p className="text-gray-700">
                             <strong>Category:</strong> {test?.testType}
                         </p>
+                        <p className="text-gray-700">
+                            <strong>Start Date:</strong> {new Date(test?.scheduledDate).toLocaleDateString()}
+                        </p>
                         <button
                             type="button"
                             onClick={() => {
