@@ -68,7 +68,7 @@ const TestPage = () => {
             </div>
             <h1 className="text-3xl font-bold text-center my-6">Upcoming Tests</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {tests?.map((test) => (
+                {upcomingTests?.map((test) => (
                     <div
                         key={test?._id}
                         className="bg-white shadow-md rounded-lg p-6 border border-gray-200"
@@ -88,10 +88,10 @@ const TestPage = () => {
                         <button
                             type="button"
                             onClick={() => {
-                                window.location.href = `/test/${test?._id}`;
+                                alert("Test is not yet started");
                             }}
                             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-150">
-                            Start Test
+                            Upcoming
                         </button>
                     </div>
                 ))}
