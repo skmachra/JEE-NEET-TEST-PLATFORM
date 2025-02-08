@@ -24,7 +24,7 @@ const TestPage = () => {
         })();
         (async () => {
             try {
-                const response = await axios.get(import.meta.env.VITE_API_URL+'/api/v1/tests/upcoming');
+                const response = await axios.post(import.meta.env.VITE_API_URL+'/api/v1/tests/upcoming');
                 setUpcomingTests(response.data);
             } catch (error) {
                 console.log(error);

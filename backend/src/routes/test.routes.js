@@ -6,7 +6,7 @@ const router = Router();
 
 router.route("/:id").get(verifyJWT, getTestDetails);
 router.route("/").get(getTest)
-router.route("/upcoming").get(getUpcomingTest);
+router.route("/upcoming").post(getUpcomingTest)
 router.route("/:id/submit").post(verifyJWT, submitTest);
 
 router.route("/history").get(verifyJWT, getTestHistories);
