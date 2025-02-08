@@ -185,6 +185,7 @@ export const manageTest = asynchandler(async (req, res) => {
         duration,
         totalMarks,
         difficultyLevel,
+        scheduledDate
     } = req.body;
 
     // Validate if all required fields are provided
@@ -246,6 +247,7 @@ export const manageTest = asynchandler(async (req, res) => {
         totalMarks,
         difficultyLevel,
         subjectSections,
+        scheduledDate,
     });
 
     await newTest.save();

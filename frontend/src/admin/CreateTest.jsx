@@ -13,6 +13,7 @@ const ManageTestPage = () => {
     duration: "",
     totalMarks: 0, // Initialize totalMarks as 0
     difficultyLevel: "Easy",
+    scheduledDate: "",
   });
 
   // New states for filters
@@ -22,7 +23,7 @@ const ManageTestPage = () => {
   // Fetch questions from the API
   useEffect(() => {
     axios
-      .get(import.meta.env.VITE_API_URL+"/api/v1/admin/questions", {
+      .get(import.meta.env.VITE_API_URL + "/api/v1/admin/questions", {
         withCredentials: true,
       }) // Replace with your questions API endpoint
       .then((response) => {
@@ -79,7 +80,7 @@ const ManageTestPage = () => {
     };
 
     axios
-      .post(import.meta.env.VITE_API_URL+"/api/v1/admin/manage-test", testPayload ,{
+      .post(import.meta.env.VITE_API_URL + "/api/v1/admin/manage-test", testPayload, {
         withCredentials: true
       }) // Replace with your test creation API endpoint
       .then((response) => {
@@ -152,6 +153,13 @@ const ManageTestPage = () => {
             readOnly
             className="border p-2 rounded"
           />
+          <input
+            type="date"
+            name="scheduledDate"
+            value={testDetails.scheduledDate}
+            onChange={handleInputChange}
+            className="border p-2 rounded"
+          />
           <select
             name="difficultyLevel"
             value={testDetails.difficultyLevel}
@@ -215,7 +223,7 @@ const ManageTestPage = () => {
             >
               {selectedQuestions.some((q) => q._id === question._id) ? "Remove" : "Add"}
             </button>
-            
+
             <button
               onClick={(e) => {
                 e.stopPropagation();

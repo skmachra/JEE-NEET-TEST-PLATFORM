@@ -7,6 +7,7 @@ const TestPage = () => {
     const [test, setTest] = useState({})
     const [showPopup, setShowPopup] = useState(false);
     const [isRead, setIsRead] = useState(false); // Track checkbox state
+    const [upcomingTests, setUpcomingTests] = useState(null);
     const navigate = useNavigate()
 
     // Mock test data
@@ -21,6 +22,14 @@ const TestPage = () => {
                 console.log(error);
             }
         })();
+        (async () => {
+            try {
+                const response = await axios.get(import.meta.env.VITE_API_URL+'/api/v1/tests/upcoming');
+                setUpcomingTests(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        })()
     }, []);
 
     return (<>

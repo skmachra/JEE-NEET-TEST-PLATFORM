@@ -48,6 +48,9 @@ const testSchema = new mongoose.Schema({
         enum: ['Easy', 'Medium', 'Hard'],
         required: true
     },
+    scheduledDate: {
+        type: Date,
+      },
     createdAt: {
         type: Date,
         default: Date.now

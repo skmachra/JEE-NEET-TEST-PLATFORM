@@ -10,7 +10,7 @@ export const getTestDetails = asynchandler(async (req, res) => {
         path: 'subjectSections.questions',
         model: 'Question',
     });
-    
+
     if (test) {
         res.json({
             title: test.title,
@@ -203,10 +203,36 @@ export const deleteTestHistory = asynchandler(async (req, res) => {
 
 export const getTest = asynchandler(async (req, res) => {
     try {
-        const tests = await Test.find();
-        
-        res.status(200).json(tests);
+      const currentDate = new Date();
+      const availableTests = await Test.find({
+        $or: [
+          { scheduledDate: { $exists: false } },  // No scheduledDate
+          { scheduledDate: { $lte: currentDate } }  // Or scheduledDate is in the past or now
+        ]
+      });
+      
+  
+      if (availableTests.length === 0) {
+        return res.status(404).json({ message: "No available tests found" });
+      }
+  
+      res.status(200).json(availableTests);
     } catch (error) {
-        res.status(500).json({ message: "Failed to fetch tests", error: error.message });
+      res.status(500).json({ message: "Failed to fetch available tests", error: error.message });
     }
-});
+  });
+  
+
+export const getUpcomingTest = asynchandler(async (req, res) => {
+    try {
+      const currentDate = new Date();
+      const upcomingTests = await Test.find({ scheduledDate: { $exists: true, $gt: currentDate } });
+  
+      if (upcomingTests.length === 0) {
+        return res.status(404).json({ message: "No upcoming tests found" });
+      }
+      res.status(200).json(upcomingTests);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch upcoming tests", error: error.message });
+    }
+  });
