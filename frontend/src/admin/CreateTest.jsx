@@ -153,6 +153,7 @@ const ManageTestPage = () => {
             readOnly
             className="border p-2 rounded"
           />
+          <div>Scheduled Date:
           <input
             type="date"
             name="scheduledDate"
@@ -160,7 +161,7 @@ const ManageTestPage = () => {
             value={testDetails.scheduledDate}
             onChange={handleInputChange}
             className="border p-2 rounded"
-          />
+          /></div>
           <select
             name="difficultyLevel"
             value={testDetails.difficultyLevel}
