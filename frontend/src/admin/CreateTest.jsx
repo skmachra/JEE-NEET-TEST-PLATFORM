@@ -156,6 +156,7 @@ const ManageTestPage = () => {
           <input
             type="date"
             name="scheduledDate"
+            placeholder="Scheduled Date"
             value={testDetails.scheduledDate}
             onChange={handleInputChange}
             className="border p-2 rounded"
