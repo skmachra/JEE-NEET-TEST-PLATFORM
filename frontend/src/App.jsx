@@ -19,6 +19,7 @@ import UpdateQuestion from './admin/UpdateQuestion';
 import AdminRoute from './admin/AdminRoute';
 import LoginRoute from './pages/LoggedIn';
 import Dashboard from './pages/Dashboard';
+import History from './pages/History';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route element={<LoginRoute />} >
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/bookmark' element={<Bookmark />} />
+          <Route path='/history' element={<History />} />
           <Route path='/test/:id' element={<TestDetailsPage />} />
           <Route path='/test/history/:id' element={<TestHistory />} />
         </Route>

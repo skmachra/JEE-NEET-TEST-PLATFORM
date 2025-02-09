@@ -35,6 +35,7 @@ const Header = () => {
   const menuItems =  user?.isadmin ? [
       { name: "Home", link: "/" },
       { name: "Bookmark", link: "/bookmark" },
+      { name: "History", link: "/history" },
       { name: "Test", link: "/test" },
       { name: "Admin", link: "/admin" },
       { name: "Logout", action: () => logout()},
@@ -43,6 +44,7 @@ const Header = () => {
     ? [
       { name: "Home", link: "/" },
       { name: "Bookmark", link: "/bookmark" },
+      { name: "History", link: "/history" },
       { name: "Test", link: "/test" },
       { name: "Logout", action: () => logout()},
     ]

@@ -376,6 +376,25 @@ const getBookmark = asynchandler(async (req, res) => {
   }
 });
 
+const getHistory = asynchandler(async (req, res) => {
+  const userId = req.user._id; // Get the authenticated user's ID
+
+  const user = await User.findById(userId)
+    .populate({
+      path: 'testHistory.test', // Populate the test reference
+    })
+    .populate({
+      path: 'testHistory.answers.questionId', // Populate each question in the answers array
+    });
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  // Return the fully populated test history
+  res.status(200).json({ testHistory: user.testHistory });
+});
+
 
 
 export {
@@ -391,5 +410,6 @@ export {
   addBookmark,
   removeBookmark,
   getBookmark,
-  googleAuth
+  googleAuth,
+  getHistory
 };
